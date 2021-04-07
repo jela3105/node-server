@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 
-app.get("/", function (req, res) {
-  res.send("Home page");
-});
-app.get("/hello-world", function (req, res) {
+app.use(express.static("public"));
+
+app.get("/hello-world", (req, res) => {
   res.send("Hello world");
+});
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/public/404.html");
 });
 app.listen(8080);
