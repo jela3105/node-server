@@ -1,15 +1,10 @@
-const http = require("http");
+const express = require("express");
+const app = express();
 
-const server = http.createServer((req, res) => {
-  res.setHeader("Content-Disposition", "attachment; filename=list.csv");
-  res.writeHead(200, { "Content-Type": "application/csv" });
-  res.write("id, name");
-  res.write("1, Chanchito feliz");
-  res.write("2, Chanchito triste");
-  res.write("3, Chanchito chancho");
-  res.end();
+app.get("/", function (req, res) {
+  res.send("Home page");
 });
-
-server.listen(8080);
-
-console.log("Listening in the port 8080");
+app.get("/hello-world", function (req, res) {
+  res.send("Hello world");
+});
+app.listen(8080);
