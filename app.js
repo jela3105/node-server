@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 
+app.set("view engine", "hbs");
 app.use(express.static("public"));
-
+app.get("/", (req, res) => {
+  res.render("home");
+});
 app.get("/hello-world", (req, res) => {
-  res.send("Hello world");
+  res.send("hello world");
 });
 app.get("/generic", (req, res) => {
   res.sendFile(__dirname + "/public/generic.html");
